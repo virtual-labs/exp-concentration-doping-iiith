@@ -2,38 +2,54 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
+      "question": "What is the difference between intrinsic and extrinsic semiconductors?",
+      "options": [
+        "Intrinsic semiconductors are pure, while extrinsic are doped",
+        "Intrinsic semiconductors are doped, while extrinsic are pure",
+        "There is no difference between them",
+        "Intrinsic semiconductors only have electrons, while extrinsic have both electrons and holes"
+      ],
+      "correctAnswer": 0
     },
     {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
+      "question": "What does the Density of States (DOS) represent in semiconductors?",
+      "options": [
+        "The density of the semiconductor material",
+        "The number of dopant atoms",
+        "The number of available energy states per unit volume and energy",
+        "The number of free electrons"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the Fermi level in a semiconductor?",
+      "options": [
+        "The highest energy level in the valence band",
+        "The lowest energy level in the conduction band",
+        "The energy level where the probability of electron occupancy is 0.5",
+        "The average energy of all electrons"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "How does doping affect the Fermi level in semiconductors?",
+      "options": [
+        "It has no effect on the Fermi level",
+        "It always moves the Fermi level to the middle of the bandgap",
+        "n-type doping moves the Fermi level closer to the conduction band",
+        "p-type doping moves the Fermi level closer to the conduction band"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is a degenerate semiconductor?",
+      "options": [
+        "A semiconductor with no free carriers",
+        "A heavily doped semiconductor where the Fermi level enters the conduction or valence band",
+        "An intrinsic semiconductor",
+        "A semiconductor at absolute zero temperature"
+      ],
+      "correctAnswer": 1
     }
   ]
 }

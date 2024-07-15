@@ -2,38 +2,54 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
+      "question": "How does the intrinsic carrier concentration (ni) depend on the bandgap energy (Eg)?",
+      "options": [
+        "ni increases as Eg increases",
+        "ni decreases as Eg increases",
+        "ni is independent of Eg",
+        "The relationship is not exponential"
+      ],
+      "correctAnswer": 1
     },
     {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
+      "question": "In an n-type semiconductor, which expression correctly represents the electron concentration?",
+      "options": [
+        "n = ni^2 / ND",
+        "n ≈ ND",
+        "n = ni",
+        "n = ND - ni"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "How does temperature affect the ionization of dopants in a semiconductor?",
+      "options": [
+        "Higher temperature leads to more ionized dopants",
+        "Higher temperature leads to fewer ionized dopants",
+        "Temperature has no effect on dopant ionization",
+        "The effect depends on the type of semiconductor"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What happens to the Fermi level as the temperature approaches absolute zero in an n-type semiconductor?",
+      "options": [
+        "It moves to the middle of the bandgap",
+        "It moves closer to the conduction band edge",
+        "It moves into the conduction band",
+        "It moves closer to the donor energy level"
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "In a degenerate p-type semiconductor, where is the Fermi level located?",
+      "options": [
+        "In the middle of the bandgap",
+        "Just above the valence band",
+        "In the valence band",
+        "Just below the conduction band"
+      ],
+      "correctAnswer": 2
     }
   ]
 }
