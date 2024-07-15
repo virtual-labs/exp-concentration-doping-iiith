@@ -1,73 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css">
-    <title>Carrier Concentration Experiment</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1>Carrier Concentration Experiment</h1>
-        <div class="controls">
-            <div class="control-group">
-                <label for="material">Material:</label>
-                <select id="material">
-                    <option value="si">Silicon</option>
-                    <option value="ge">Germanium</option>
-                    <option value="gaas">Gallium Arsenide</option>
-                </select>
-            </div>
-            
-            <div class="control-group">
-                <label for="temperature">Temperature (K):</label>
-                <input type="number" id="temperature" value="300" min="0" max="1000">
-            </div>
-            
-            <div class="control-group">
-                <label for="doping">Doping Concentration (cm^-3):</label>
-                <input type="number" id="doping" value="1e15" min="1e10" max="1e20">
-            </div>
-            
-            <div class="control-group">
-                <label for="energy">Energy (eV):</label>
-                <input type="number" id="energy" value="0.5" min="0" max="2" step="0.1">
-            </div>
-            
-            <button id="calculate">Calculate</button>
-        </div>
-        <div class="results">
-            <div class="result-group">
-                <label for="dos-result">Density of States (cm^-3 eV^-1):</label>
-                <input type="text" id="dos-result" readonly>
-            </div>
-            <div class="result-group">
-                <label for="fermi-result">Fermi Function:</label>
-                <input type="text" id="fermi-result" readonly>
-            </div>
-            <div class="result-group">
-                <label for="carrier-result">Carrier Concentration (cm^-3):</label>
-                <input type="text" id="carrier-result" readonly>
-            </div>
-        </div>
-        <div class="plots">
-            <div id="dosPlot"></div>
-            <div id="fermiFunctionPlot"></div>
-            <div id="carrierConcentrationPlot"></div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./js/main.js"></script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrier Concentration Simulation</title>
+    <title>Semiconductor Properties Simulation</title>
     <link rel="stylesheet" href="./css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -100,8 +36,9 @@
             <button id="calculate">Calculate</button>
         </div>
         <div class="plots">
-            <canvas id="carrierPlot"></canvas>
-            <canvas id="fermiPlot"></canvas>
+            <canvas id="dosPlot"></canvas>
+            <canvas id="fermiFunctionPlot"></canvas>
+            <canvas id="carrierConcentrationPlot"></canvas>
         </div>
         <div id="debug"></div>
     </div>
