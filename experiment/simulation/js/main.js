@@ -1,39 +1,34 @@
 const materialProperties = {
-    Si: { Eg: 1.12, Nc: 2.8e19, Nv: 1.04e19, m_e: 1.08, m_h: 0.56 },
-    Ge: { Eg: 0.66, Nc: 1.04e19, Nv: 6.0e18, m_e: 0.55, m_h: 0.37 },
-    GaAs: { Eg: 1.42, Nc: 4.7e17, Nv: 7.0e18, m_e: 0.067, m_h: 0.45 }
+    Si: { Eg0: 1.17, alpha: 4.73e-4, beta: 636, Nc300: 2.86e19, Nv300: 3.1e19, m_e: 1.08, m_h: 0.81 },
+    Ge: { Eg0: 0.7437, alpha: 4.774e-4, beta: 235, Nc300: 1.04e19, Nv300: 6.0e18, m_e: 0.55, m_h: 0.37 },
+    GaAs: { Eg0: 1.519, alpha: 5.405e-4, beta: 204, Nc300: 4.7e17, Nv300: 7.0e18, m_e: 0.067, m_h: 0.45 }
 };
 
-const k = 8.617e-5; // Boltzmann constant in eV/K
-const h = 4.135667696e-15; // Planck's constant in eV*s
-const m0 = 9.1093837e-31; // Electron rest mass in kg
+const k = 8.617333262e-5; // Boltzmann constant in eV/K
 
-function calculateDOS(material, E, type) {
-    const { m_e, m_h, Eg } = materialProperties[material];
-    const m = type === 'n' ? m_e : m_h;
-    const m_eff = m * m0; // Effective mass
-    const h_bar = h / (2 * Math.PI); // Reduced Planck's constant
-    
-    if (type === 'n') {
-        return (1 / (2 * Math.PI * Math.PI)) * ((2 * m_eff) / (h_bar * h_bar)) ** (3/2) * Math.sqrt(E) * 1e-6; // for E > 0
-    } else {
-        return (1 / (2 * Math.PI * Math.PI)) * ((2 * m_eff) / (h_bar * h_bar)) ** (3/2) * Math.sqrt(Eg - E) * 1e-6; // for E < Eg
-    }
+function calculateBandgap(material, T) {
+    const { Eg0, alpha, beta } = materialProperties[material];
+    return Eg0 - (alpha * T * T) / (T + beta);
 }
 
-function calculateFermiFunction(E, EF, T) {
-    return 1 / (1 + Math.exp((E - EF) / (k * T)));
+function calculateEffectiveDOS(material, T) {
+    const { Nc300, Nv300 } = materialProperties[material];
+    const Nc = Nc300 * Math.pow(T / 300, 3/2);
+    const Nv = Nv300 * Math.pow(T / 300, 3/2);
+    return { Nc, Nv };
 }
 
 function calculateIntrinsicCarrierConcentration(material, T) {
-    const { Eg, Nc, Nv } = materialProperties[material];
+    const Eg = calculateBandgap(material, T);
+    const { Nc, Nv } = calculateEffectiveDOS(material, T);
     return Math.sqrt(Nc * Nv) * Math.exp(-Eg / (2 * k * T));
 }
 
 function calculateFermiLevel(material, T, doping, dopingType) {
-    const { Eg, Nc, Nv } = materialProperties[material];
+    const Eg = calculateBandgap(material, T);
+    const { Nc, Nv } = calculateEffectiveDOS(material, T);
     const ni = calculateIntrinsicCarrierConcentration(material, T);
-    const Ei = -Eg / 2 + (k * T / 2) * Math.log(Nv / Nc);
+    const Ei = Eg / 2 + (k * T / 2) * Math.log(Nv / Nc);
     
     if (dopingType === 'n') {
         return Ei + k * T * Math.log(doping / ni);
@@ -42,39 +37,46 @@ function calculateFermiLevel(material, T, doping, dopingType) {
     }
 }
 
-function calculateCarrierConcentration(material, E, EF, T, type) {
-    const dos = calculateDOS(material, E, type);
-    const fermi = calculateFermiFunction(E, EF, T);
-    return dos * fermi;
+function calculateCarrierConcentration(material, T, doping, dopingType) {
+    const Eg = calculateBandgap(material, T);
+    const { Nc, Nv } = calculateEffectiveDOS(material, T);
+    const ni = calculateIntrinsicCarrierConcentration(material, T);
+    const EF = calculateFermiLevel(material, T, doping, dopingType);
+
+    const n = Nc * Math.exp(-(Eg - EF) / (k * T));
+    const p = Nv * Math.exp(-EF / (k * T));
+
+    return { n, p };
 }
 
 let dosChart, fermiFunctionChart, carrierConcentrationChart;
-
 function updatePlots() {
     const material = document.getElementById('material').value;
     const T = parseFloat(document.getElementById('temperature').value);
     const doping = parseFloat(document.getElementById('doping').value);
     const dopingType = document.getElementById('dopingType').value;
 
-    const { Eg } = materialProperties[material];
-    const energyValues = Array.from({ length: 1000 }, (_, i) => i * Eg / 500);
-    const temperatures = Array.from({ length: 100 }, (_, i) => 100 + i * 9);
+    const Eg = calculateBandgap(material, T);
+    const energyValues = Array.from({ length: 1000 }, (_, i) => i * Eg / 500 - Eg/2);
+    const temperatures = Array.from({ length: 300 }, (_, i) => 50 + i * 5); // 50K to 1550K
 
     // DOS vs E
-    const dosValuesN = energyValues.map(E => calculateDOS(material, E, 'n'));
-    const dosValuesP = energyValues.map(E => calculateDOS(material, E, 'p'));
+    const dosValues = energyValues.map(E => {
+        const { Nc, Nv } = calculateEffectiveDOS(material, T);
+        return {
+            dos_c: E >= 0 ? Nc * Math.sqrt(E) / (Eg / 2) : 0,
+            dos_v: E <= 0 ? Nv * Math.sqrt(-E) / (Eg / 2) : 0
+        };
+    });
 
-    // Fermi function vs T
+    // Fermi function vs E (at constant T)
     const EF = calculateFermiLevel(material, T, doping, dopingType);
-    const fermiFunctionValues = temperatures.map(temp => calculateFermiFunction(Eg/2, EF, temp));
+    const fermiFunctionValues = energyValues.map(E => 1 / (1 + Math.exp((E - EF) / (k * T))));
 
     // Carrier concentration vs T
-    const carrierConcentrations = temperatures.map(temp => {
-        const EF_temp = calculateFermiLevel(material, temp, doping, dopingType);
-        const n = calculateCarrierConcentration(material, Eg/2, EF_temp, temp, 'n');
-        const p = calculateCarrierConcentration(material, Eg/2, EF_temp, temp, 'p');
-        return { n, p };
-    });
+    const carrierConcentrations = temperatures.map(temp => 
+        calculateCarrierConcentration(material, temp, doping, dopingType)
+    );
 
     try {
         if (dosChart) dosChart.destroy();
@@ -88,13 +90,13 @@ function updatePlots() {
                 datasets: [
                     {
                         label: 'DOS (Conduction Band)',
-                        data: dosValuesN,
+                        data: dosValues.map(d => d.dos_c),
                         borderColor: 'blue',
                         fill: false
                     },
                     {
                         label: 'DOS (Valence Band)',
-                        data: dosValuesP,
+                        data: dosValues.map(d => d.dos_v),
                         borderColor: 'red',
                         fill: false
                     }
@@ -129,7 +131,7 @@ function updatePlots() {
         fermiFunctionChart = new Chart(document.getElementById('fermiFunctionPlot'), {
             type: 'line',
             data: {
-                labels: temperatures,
+                labels: energyValues,
                 datasets: [{
                     label: 'Fermi Function',
                     data: fermiFunctionValues,
@@ -142,21 +144,23 @@ function updatePlots() {
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Fermi Function vs Temperature'
+                        text: 'Fermi Function vs Energy'
                     },
                 },
                 scales: {
                     x: {
                         title: {
                             display: true,
-                            text: 'Temperature (K)'
+                            text: 'Energy (eV)'
                         }
                     },
                     y: {
                         title: {
                             display: true,
                             text: 'f(E)'
-                        }
+                        },
+                        min: 0,
+                        max: 1
                     }
                 }
             }
