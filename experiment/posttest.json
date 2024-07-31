@@ -9,7 +9,13 @@
         "ni is independent of Eg",
         "The relationship is not exponential"
       ],
-      "correctAnswer": 1
+      "correctAnswer": 1,
+      "explanations": [
+        "Incorrect. This is the opposite of the actual relationship. As Eg increases, it becomes harder for electrons to be thermally excited across the bandgap, resulting in fewer intrinsic carriers.",
+        "Correct! The intrinsic carrier concentration decreases exponentially as the bandgap energy increases. This is described by the equation ni ∝ exp(-Eg/2kT). A larger bandgap means fewer carriers can be thermally excited across the gap.",
+        "Incorrect. The intrinsic carrier concentration is strongly dependent on the bandgap energy. They are not independent of each other.",
+        "Incorrect. The relationship between ni and Eg is indeed exponential, as described by the equation ni ∝ exp(-Eg/2kT)."
+      ]
     },
     {
       "question": "In an n-type semiconductor, which expression correctly represents the electron concentration?",
@@ -19,7 +25,13 @@
         "n = ni",
         "n = ND - ni"
       ],
-      "correctAnswer": 1
+      "correctAnswer": 1,
+      "explanations": [
+        "Incorrect. This expression actually represents the hole concentration (p) in an n-type semiconductor, not the electron concentration.",
+        "Correct! In an n-type semiconductor, the electron concentration is approximately equal to the donor concentration (ND) under most conditions, assuming complete ionization of donors.",
+        "Incorrect. This would be true for an intrinsic semiconductor. In an n-type semiconductor, the electron concentration is much higher than the intrinsic carrier concentration.",
+        "Incorrect. While this expression attempts to account for both donors and intrinsic carriers, it's not the correct representation. In most cases, ND >> ni, so n ≈ ND is a better approximation."
+      ]
     },
     {
       "question": "How does temperature affect the ionization of dopants in a semiconductor?",
@@ -29,7 +41,13 @@
         "Temperature has no effect on dopant ionization",
         "The effect depends on the type of semiconductor"
       ],
-      "correctAnswer": 0
+      "correctAnswer": 0,
+      "explanations": [
+        "Correct! As temperature increases, more thermal energy is available to ionize dopants. This leads to a higher percentage of ionized dopants at higher temperatures.",
+        "Incorrect. Higher temperatures actually increase the ionization of dopants due to increased thermal energy available for ionization.",
+        "Incorrect. Temperature has a significant effect on dopant ionization. Ionization is a thermally activated process.",
+        "Incorrect. While different semiconductors may have different ionization energies, the general trend of increased ionization with temperature holds for both n-type and p-type semiconductors."
+      ]
     },
     {
       "question": "What happens to the Fermi level as the temperature approaches absolute zero in an n-type semiconductor?",
@@ -39,7 +57,13 @@
         "It moves into the conduction band",
         "It moves closer to the donor energy level"
       ],
-      "correctAnswer": 3
+      "correctAnswer": 3,
+      "explanations": [
+        "Incorrect. In an n-type semiconductor, the Fermi level doesn't move to the middle of the bandgap as temperature approaches zero. It remains closer to the conduction band.",
+        "Incorrect. While the Fermi level is closer to the conduction band in an n-type semiconductor, it doesn't move even closer as temperature approaches zero.",
+        "Incorrect. The Fermi level doesn't move into the conduction band as temperature approaches zero in a non-degenerate n-type semiconductor.",
+        "Correct! As temperature approaches absolute zero, the Fermi level in an n-type semiconductor moves closer to the donor energy level, halfway between the donor level and the conduction band edge."
+      ]
     },
     {
       "question": "In a degenerate p-type semiconductor, where is the Fermi level located?",
@@ -49,7 +73,13 @@
         "In the valence band",
         "Just below the conduction band"
       ],
-      "correctAnswer": 2
+      "correctAnswer": 2,
+      "explanations": [
+        "Incorrect. In a degenerate p-type semiconductor, the Fermi level is not in the middle of the bandgap. It's much closer to, or even inside, the valence band.",
+        "Incorrect. While this would be true for a non-degenerate p-type semiconductor, in the degenerate case, the Fermi level actually moves into the valence band.",
+        "Correct! In a degenerate p-type semiconductor, the Fermi level is located within the valence band due to the very high concentration of holes.",
+        "Incorrect. In a p-type semiconductor, degenerate or not, the Fermi level is closer to the valence band, not the conduction band."
+      ]
     }
   ]
 }

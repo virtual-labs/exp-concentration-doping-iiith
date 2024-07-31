@@ -9,7 +9,13 @@
         "There is no difference between them",
         "Intrinsic semiconductors only have electrons, while extrinsic have both electrons and holes"
       ],
-      "correctAnswer": 0
+      "correctAnswer": 0,
+      "explanations": [
+        "Correct! Intrinsic semiconductors are pure materials with no intentional impurities. Their electrical properties are determined by the inherent crystal structure. Extrinsic semiconductors, on the other hand, are intentionally doped with impurities to modify their electrical properties.",
+        "Incorrect. This is the opposite of the correct definition. Intrinsic semiconductors are pure, while extrinsic semiconductors are doped with impurities to alter their electrical characteristics.",
+        "Incorrect. There is a significant difference between intrinsic and extrinsic semiconductors. Intrinsic semiconductors are pure, while extrinsic semiconductors are intentionally doped to modify their electrical properties.",
+        "Incorrect. Both intrinsic and extrinsic semiconductors can have electrons and holes. The key difference is that intrinsic semiconductors are pure, while extrinsic semiconductors are doped with impurities."
+      ]
     },
     {
       "question": "What does the Density of States (DOS) represent in semiconductors?",
@@ -19,7 +25,13 @@
         "The number of available energy states per unit volume and energy",
         "The number of free electrons"
       ],
-      "correctAnswer": 2
+      "correctAnswer": 2,
+      "explanations": [
+        "Incorrect. The Density of States (DOS) is not related to the physical density of the material. It's a concept in quantum mechanics related to the available energy states.",
+        "Incorrect. While dopant atoms can affect the DOS, the DOS itself does not represent the number of dopant atoms. It's a more fundamental property of the semiconductor.",
+        "Correct! The Density of States (DOS) represents the number of available energy states per unit volume and energy in a semiconductor. It's a crucial concept for understanding the distribution of electrons and holes in energy bands.",
+        "Incorrect. While the DOS is related to the number of free electrons, it doesn't directly represent this. Instead, it describes the available energy states that electrons can occupy."
+      ]
     },
     {
       "question": "What is the Fermi level in a semiconductor?",
@@ -29,7 +41,13 @@
         "The energy level where the probability of electron occupancy is 0.5",
         "The average energy of all electrons"
       ],
-      "correctAnswer": 2
+      "correctAnswer": 2,
+      "explanations": [
+        "Incorrect. The Fermi level is not necessarily at the top of the valence band. In intrinsic semiconductors, it's typically near the middle of the bandgap.",
+        "Incorrect. The Fermi level is not at the bottom of the conduction band. In n-type semiconductors, it can be close to, but not at, the conduction band edge.",
+        "Correct! The Fermi level is defined as the energy level at which the probability of electron occupancy is exactly 0.5. This is a fundamental concept in semiconductor physics and determines many electrical properties of the material.",
+        "Incorrect. While the Fermi level is related to electron energies, it's not the average energy of all electrons. It's the energy at which the probability of electron occupancy is 0.5."
+      ]
     },
     {
       "question": "How does doping affect the Fermi level in semiconductors?",
@@ -39,7 +57,13 @@
         "n-type doping moves the Fermi level closer to the conduction band",
         "p-type doping moves the Fermi level closer to the conduction band"
       ],
-      "correctAnswer": 2
+      "correctAnswer": 2,
+      "explanations": [
+        "Incorrect. Doping has a significant effect on the Fermi level. It's one of the primary ways to control the Fermi level position in semiconductors.",
+        "Incorrect. Doping typically moves the Fermi level away from the middle of the bandgap, not towards it. The direction depends on the type of doping.",
+        "Correct! n-type doping introduces excess electrons, which moves the Fermi level closer to the conduction band. This is because the additional electrons occupy higher energy states, effectively raising the Fermi level.",
+        "Incorrect. p-type doping actually moves the Fermi level closer to the valence band, not the conduction band. This is because p-type doping introduces excess holes in the valence band."
+      ]
     },
     {
       "question": "What is a degenerate semiconductor?",
@@ -49,7 +73,13 @@
         "An intrinsic semiconductor",
         "A semiconductor at absolute zero temperature"
       ],
-      "correctAnswer": 1
+      "correctAnswer": 1,
+      "explanations": [
+        "Incorrect. A semiconductor with no free carriers would be an insulator, not a degenerate semiconductor. Degenerate semiconductors actually have a very high concentration of free carriers.",
+        "Correct! A degenerate semiconductor is one that is so heavily doped that the Fermi level moves into the conduction band (for n-type) or valence band (for p-type). This leads to metal-like behavior in some aspects.",
+        "Incorrect. An intrinsic semiconductor is a pure semiconductor with no intentional doping. Degenerate semiconductors, on the other hand, are heavily doped.",
+        "Incorrect. While temperature affects semiconductor behavior, being at absolute zero doesn't define degeneracy. Degeneracy is related to the level of doping and the position of the Fermi level relative to the energy bands."
+      ]
     }
   ]
 }
